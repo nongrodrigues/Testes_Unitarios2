@@ -1,6 +1,21 @@
-- Linguagem: Python 3.12+ com Type Hints.
-- Padrão: PEP 8 + programação defensiva.
-- Testes: pytest no padrão AAA.
-- Técnicas: EP, BVA, Error Guessing.
-- Cobertura: 100% branch via pytest-cov.
-- Tema: classificação 16+ para Neon Genesis Evangelion.
+# Regras de Contexto do Projeto - Classificador EVA
+
+## Stack Tecnológica
+- Python 3.12+
+- Gerenciamento de pacotes: `uv`
+- Framework Web: FastAPI
+- Validação: Pydantic v2
+- Template Engine: Jinja2
+
+## Convenções de Teste
+- Framework: Pytest.
+- Testes de Integração: usar `@pytest.mark.integration` e `TestClient`.
+- Testes E2E: usar `@pytest.mark.e2e` e Playwright (Page Object Model).
+- Acessibilidade: usar `@pytest.mark.accessibility` com Axe-core.
+- Massa de dados: Usar Faker com locale `pt_BR` na classe `ClassificacaoFactory`.
+- Mocks: Usar `mocker.patch` para isolar as dependências de negócio.
+
+## Diretrizes de Código
+- Sempre seguir o padrão AAA (Arrange, Act, Assert).
+- Usar seletores semânticos no Playwright (`get_by_label`, `get_by_role`).
+- Nunca colocar regras de negócio nos arquivos de rota (main.py), sempre usar a camada de serviço (services.py).

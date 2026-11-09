@@ -1,34 +1,19 @@
-# Relatório de Transparência — Uso de IA
+# Relatório de Transparência e Uso de IA
 
-## 1. Ferramentas Utilizadas
-- **IA:** DeepSeek (DeepSeek AI) — modelo DeepSeek Chat (via chat.deepseek.com)
-- **IDE:** Visual Studio Code
-- **Gerenciador de Dependências:** `uv` (Python 3.14.8)
-- **Framework de Testes:** Pytest 9.1.1 + pytest-cov 7.1.0
+## Ferramenta Utilizada
+* LLM (Modelo de Linguagem): **DeepSeek** (modelo de chat e raciocínio).
 
-## 2. Como a IA foi empregada
+## Contexto do Projeto
+O sistema desenvolvido é o **Classificador de Maturação EVA**, que avalia o nível de complexidade, violência e temas adultos do anime *Neon Genesis Evangelion* para recomendar a classificação indicativa (Acesso Liberado, com Supervisão ou Bloqueado) baseada na idade e maturidade do usuário.
 
-A Inteligência Artificial foi utilizada como **copiloto técnico**,
-nunca como fonte única de verdade. Seu uso se concentrou em três frentes:
+## Escopo de Uso
+* Geração inicial da estrutura de pastas e configuração do ambiente com `uv`.
+* Auxílio na escrita dos seletores semânticos do Playwright (`get_by_label`, `get_by_role`) para os testes E2E.
+* Criação do script de testes de carga (`locustfile.py`) e das métricas de SLA.
+* Geração do boilerplate dos testes de integração utilizando Faker (pt_BR).
 
-- **Especificação de Requisitos (PRD.md):** apoio na estruturação inicial
-  das regras de negócio determinísticas do sistema de classificação 16+
-  para *Neon Genesis Evangelion* (BR01 – BR04).
-- **Implementação do Domínio (SUT — `src/testes_unitarios/neon.py`):**
-  auxílio na escrita do código Python com tipagem estática (*Type Hints*)
-  e tratamento defensivo de exceções (`ValueError` e `TypeError`).
-- **Suíte de Testes (`tests/test_neon.py`):** geração orientada de casos
-  parametrizados aplicando as técnicas de **Particionamento de Equivalência
-  (EP)**, **Análise do Valor Limite (BVA)** e **Error Guessing**, além do
-  padrão AAA (Arrange, Act, Assert).
-
-## 3. Auditoria e Validação Humana
-
-Todo o conteúdo gerado com apoio de IA passou por **revisão humana rigorosa**:
-
-1. **Revisão crítica linha a linha** do SUT e da suíte de testes,
-   verificando conformidade com o PRD e com PEP 8.
-2. **Execução local via `uv`** dos comandos:
-   ```bash
-   uv run pytest -v
-   uv run pytest --cov=app --cov-branch --cov-report=term-missing
+## Auditoria e Validação
+* A lógica de negócio (`ClassificadorEva`) foi escrita e mantida manualmente, servindo como base de verdade para a validação da IA.
+* O código gerado foi auditado para resolver conflitos de dependência (Starlette/httpx2) e problemas de renderização de template (Jinja2).
+* Todos os testes foram executados localmente na máquina do desenvolvedor, atingindo a marca de **48 testes passando (100% de sucesso)**, garantindo que o uso da IA não introduziu regressões ou falhas de segurança.
+* A acessibilidade foi validada por ferramenta externa (Axe-core), garantindo que a IA não gerou código HTML inacessível.

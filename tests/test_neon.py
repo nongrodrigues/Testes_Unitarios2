@@ -1,6 +1,6 @@
 import pytest
 
-from testes_unitarios.neon import ClassificadorEva
+from app.services import ClassificadorEva
 
 
 @pytest.mark.unit
